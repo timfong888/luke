@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "800107016897",
+    "project_id": "acts2-df410",
+    "storage_bucket": "acts2-df410.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800107016897:android:d4f0fa174cbc7b19a89a40",
+        "android_client_info": {
+          "package_name": "acts2.xyz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800107016897-cvmea6a8fmc4vg1u4a61o09drmkfnq5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "acts2.xyz",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "800107016897-sk9pe0p7u8jfd5cmj82otpejta90i6b3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOOB7qnS1vv5adx11o4JDfW1Pvh5O8a0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800107016897-sk9pe0p7u8jfd5cmj82otpejta90i6b3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "800107016897-d39f54p6l2uqcqnbgnkeq70ubq9t4cc3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "acts2.package"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
