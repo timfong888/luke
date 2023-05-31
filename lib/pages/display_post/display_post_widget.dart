@@ -349,58 +349,53 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                                                       null &&
                                                   widget.postID!.postPhoto !=
                                                       '')
-                                                Flexible(
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          child:
-                                                              FlutterFlowExpandedImageView(
-                                                            image:
-                                                                CachedNetworkImage(
-                                                              imageUrl: widget
-                                                                  .postID!
-                                                                  .postPhoto,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                            allowRotation:
-                                                                false,
-                                                            tag: widget.postID!
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .fade,
+                                                        child:
+                                                            FlutterFlowExpandedImageView(
+                                                          image:
+                                                              CachedNetworkImage(
+                                                            imageUrl: widget
+                                                                .postID!
                                                                 .postPhoto,
-                                                            useHeroAnimation:
-                                                                true,
+                                                            fit: BoxFit.contain,
                                                           ),
+                                                          allowRotation: false,
+                                                          tag: widget.postID!
+                                                              .postPhoto,
+                                                          useHeroAnimation:
+                                                              true,
                                                         ),
-                                                      );
-                                                    },
-                                                    child: Hero(
-                                                      tag: widget
-                                                          .postID!.postPhoto,
-                                                      transitionOnUserGestures:
-                                                          true,
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: widget
-                                                            .postID!.postPhoto,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.85,
-                                                        fit: BoxFit.cover,
                                                       ),
+                                                    );
+                                                  },
+                                                  child: Hero(
+                                                    tag: widget
+                                                        .postID!.postPhoto,
+                                                    transitionOnUserGestures:
+                                                        true,
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: widget
+                                                          .postID!.postPhoto,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.85,
+                                                      fit: BoxFit.cover,
                                                     ),
                                                   ),
                                                 ),
