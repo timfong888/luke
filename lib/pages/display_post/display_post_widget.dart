@@ -872,7 +872,6 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                             elevation: 0.0,
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.9,
-                              height: 150.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
