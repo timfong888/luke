@@ -30,6 +30,8 @@ class DisplayPostModel extends FlutterFlowModel {
 
   // State field(s) for Column widget.
   ScrollController? columnController;
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // State field(s) for TextField widget.
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;

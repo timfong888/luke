@@ -54,6 +54,11 @@ class PostsRecord extends FirestoreRecord {
   String get postVideoUrl => _postVideoUrl ?? '';
   bool hasPostVideoUrl() => _postVideoUrl != null;
 
+  // "public" field.
+  bool? _public;
+  bool get public => _public ?? false;
+  bool hasPublic() => _public != null;
+
   void _initializeFields() {
     _postPhoto = snapshotData['post_photo'] as String?;
     _postUser = snapshotData['post_user'] as DocumentReference?;
@@ -63,6 +68,7 @@ class PostsRecord extends FirestoreRecord {
     _numVotes = snapshotData['num_votes'] as int?;
     _postMessage = snapshotData['post_message'] as String?;
     _postVideoUrl = snapshotData['post_video_url'] as String?;
+    _public = snapshotData['public'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -98,6 +104,7 @@ Map<String, dynamic> createPostsRecordData({
   int? numVotes,
   String? postMessage,
   String? postVideoUrl,
+  bool? public,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -108,6 +115,7 @@ Map<String, dynamic> createPostsRecordData({
       'num_votes': numVotes,
       'post_message': postMessage,
       'post_video_url': postVideoUrl,
+      'public': public,
     }.withoutNulls,
   );
 

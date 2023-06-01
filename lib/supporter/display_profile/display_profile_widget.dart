@@ -56,429 +56,514 @@ class _DisplayProfileWidgetState extends State<DisplayProfileWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(55.0),
-          child: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            automaticallyImplyLeading: false,
-            actions: [],
-            flexibleSpace: FlexibleSpaceBar(
-              title: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30.0,
-                              borderWidth: 1.0,
-                              buttonSize: 45.0,
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white,
-                                size: 25.0,
-                              ),
-                              onPressed: () async {
-                                context.pop();
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                4.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Back',
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineMedium
-                                  .override(
-                                    fontFamily: 'Lexend',
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Page Title',
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Lexend',
-                              color: Colors.white,
-                              fontSize: 22.0,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              centerTitle: true,
-              expandedTitleScale: 1.0,
-            ),
-            elevation: 2.0,
-          ),
-        ),
-        body: SafeArea(
-          top: true,
-          child: Container(
-            width: MediaQuery.of(context).size.width * 1.0,
-            height: MediaQuery.of(context).size.height * 1.0,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 0.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FutureBuilder<UsersRecord>(
-                    future: FFAppState().userProfilebyProfileID(
-                      requestFn: () =>
-                          UsersRecord.getDocumentOnce(widget.profileId!),
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              color: FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        );
-                      }
-                      final profileContainerUsersRecord = snapshot.data!;
-                      return Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        height: 150.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Column(
+        body: NestedScrollView(
+          headerSliverBuilder: (context, _) => [
+            SliverAppBar(
+              pinned: false,
+              floating: false,
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              automaticallyImplyLeading: false,
+              actions: [],
+              flexibleSpace: FlexibleSpaceBar(
+                title: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                        child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 10.0, 0.0),
-                                    child: Container(
-                                      width: 85.0,
-                                      height: 85.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: CachedNetworkImage(
-                                        imageUrl: profileContainerUsersRecord
-                                                        .photoUrl !=
-                                                    null &&
-                                                profileContainerUsersRecord
-                                                        .photoUrl !=
-                                                    ''
-                                            ? profileContainerUsersRecord
-                                                .photoUrl
-                                            : 'https://robohash.org/${profileContainerUsersRecord.uid}.png',
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30.0,
+                                borderWidth: 1.0,
+                                buttonSize: 45.0,
+                                icon: Icon(
+                                  Icons.arrow_back_ios,
+                                  color: Colors.white,
+                                  size: 25.0,
                                 ),
-                                Expanded(
-                                  flex: 5,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        profileContainerUsersRecord.displayName,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                      Text(
-                                        profileContainerUsersRecord
-                                            .missionStatement,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                      Text(
-                                        'Org goes here',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: StreamBuilder<List<FollowersRecord>>(
-                                    stream: queryFollowersRecord(
-                                      parent: widget.profileId,
-                                      queryBuilder: (followersRecord) =>
-                                          followersRecord.where(
-                                              'followerUserId',
-                                              isEqualTo: currentUserReference),
-                                      singleRecord: true,
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<FollowersRecord>
-                                          buttonFollowersRecordList =
-                                          snapshot.data!;
-                                      // Return an empty Container when the item does not exist.
-                                      if (snapshot.data!.isEmpty) {
-                                        return Container();
-                                      }
-                                      final buttonFollowersRecord =
-                                          buttonFollowersRecordList.isNotEmpty
-                                              ? buttonFollowersRecordList.first
-                                              : null;
-                                      return FFButtonWidget(
-                                        onPressed: () async {
-                                          final followersCreateData =
-                                              createFollowersRecordData(
-                                            followerUserId:
-                                                currentUserReference,
-                                            dateFollow:
-                                                dateTimeFromSecondsSinceEpoch(
-                                                    getCurrentTimestamp
-                                                        .secondsSinceEpoch),
-                                          );
-                                          await FollowersRecord.createDoc(
-                                                  widget.profileId!)
-                                              .set(followersCreateData);
-                                        },
-                                        text: buttonFollowersRecord != null
-                                            ? 'unfollow'
-                                            : 'follow',
-                                        options: FFButtonOptions(
-                                          width: 130.0,
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'DM Sans',
-                                                    color: Colors.white,
-                                                  ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'Life Verse',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                            ),
-                            Container(
-                              width: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                onPressed: () async {
+                                  context.pop();
+                                },
                               ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  4.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                profileContainerUsersRecord.lifeVerse,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                'Back',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: 'Lexend',
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
                               ),
                             ),
                           ],
                         ),
-                      );
-                    },
-                  ),
-                  Flexible(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
-                      height: 45.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Share this with friends',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            icon: Icon(
-                              Icons.ios_share,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
+                    ],
                   ),
-                  Text(
-                    'Supporters',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'DM Sans',
-                          fontWeight: FontWeight.bold,
-                        ),
+                ),
+                centerTitle: true,
+                expandedTitleScale: 1.0,
+              ),
+              elevation: 2.0,
+            )
+          ],
+          body: Builder(
+            builder: (context) {
+              return SafeArea(
+                top: false,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 1.0,
+                  height: MediaQuery.of(context).size.height * 1.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  Padding(
+                  child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: StreamBuilder<List<SupportersRecord>>(
-                        stream: querySupportersRecord(
-                          queryBuilder: (supportersRecord) => supportersRecord
-                              .where('missionary', isEqualTo: widget.profileId),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).primary,
+                        EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        FutureBuilder<UsersRecord>(
+                          future: FFAppState().userProfilebyProfileID(
+                            requestFn: () =>
+                                UsersRecord.getDocumentOnce(widget.profileId!),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
+                              );
+                            }
+                            final profileContainerUsersRecord = snapshot.data!;
+                            return Container(
+                              width: MediaQuery.of(context).size.width * 1.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                               ),
-                            );
-                          }
-                          List<SupportersRecord> listViewSupportersRecordList =
-                              snapshot.data!;
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: listViewSupportersRecordList.length,
-                            itemBuilder: (context, listViewIndex) {
-                              final listViewSupportersRecord =
-                                  listViewSupportersRecordList[listViewIndex];
-                              return StreamBuilder<UsersRecord>(
-                                stream: UsersRecord.getDocument(
-                                    listViewSupportersRecord.supporterRef!),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 10.0, 0.0),
+                                          child: Container(
+                                            width: 85.0,
+                                            height: 85.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: CachedNetworkImage(
+                                              imageUrl: profileContainerUsersRecord
+                                                              .photoUrl !=
+                                                          null &&
+                                                      profileContainerUsersRecord
+                                                              .photoUrl !=
+                                                          ''
+                                                  ? profileContainerUsersRecord
+                                                      .photoUrl
+                                                  : 'https://robohash.org/${profileContainerUsersRecord.uid}.png',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    );
-                                  }
-                                  final circleImageUsersRecord = snapshot.data!;
-                                  return Container(
-                                    width: 30.0,
-                                    height: 30.0,
-                                    clipBehavior: Clip.antiAlias,
+                                      Expanded(
+                                        flex: 5,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              profileContainerUsersRecord
+                                                  .displayName,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                            Text(
+                                              profileContainerUsersRecord
+                                                  .missionStatement,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                            Text(
+                                              'Org goes here',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: StreamBuilder<
+                                            List<FollowersRecord>>(
+                                          stream: queryFollowersRecord(
+                                            parent: widget.profileId,
+                                            queryBuilder: (followersRecord) =>
+                                                followersRecord.where(
+                                                    'followerUserId',
+                                                    isEqualTo:
+                                                        currentUserReference),
+                                            singleRecord: true,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<FollowersRecord>
+                                                buttonFollowersRecordList =
+                                                snapshot.data!;
+                                            // Return an empty Container when the item does not exist.
+                                            if (snapshot.data!.isEmpty) {
+                                              return Container();
+                                            }
+                                            final buttonFollowersRecord =
+                                                buttonFollowersRecordList
+                                                        .isNotEmpty
+                                                    ? buttonFollowersRecordList
+                                                        .first
+                                                    : null;
+                                            return FFButtonWidget(
+                                              onPressed: () async {
+                                                final followersCreateData =
+                                                    createFollowersRecordData(
+                                                  followerUserId:
+                                                      currentUserReference,
+                                                  dateFollow:
+                                                      dateTimeFromSecondsSinceEpoch(
+                                                          getCurrentTimestamp
+                                                              .secondsSinceEpoch),
+                                                );
+                                                await FollowersRecord.createDoc(
+                                                        widget.profileId!)
+                                                    .set(followersCreateData);
+                                              },
+                                              text:
+                                                  buttonFollowersRecord != null
+                                                      ? 'unfollow'
+                                                      : 'follow',
+                                              options: FFButtonOptions(
+                                                width: 130.0,
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'DM Sans',
+                                                          color: Colors.white,
+                                                        ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    'Life Verse',
+                                    textAlign: TextAlign.start,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Container(
+                                    width: 100.0,
                                     decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
                                     ),
-                                    child: Image.network(
-                                      circleImageUsersRecord.photoUrl,
-                                      fit: BoxFit.contain,
+                                    child: Text(
+                                      profileContainerUsersRecord.lifeVerse,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
                                     ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        Flexible(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 1.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Share this with friends',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 50.0,
+                                  icon: Icon(
+                                    Icons.ios_share,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 30.0,
+                                  ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Supporters',
+                          textAlign: TextAlign.start,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'DM Sans',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 15.0, 0.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 1.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: StreamBuilder<List<SupportersRecord>>(
+                              stream: querySupportersRecord(
+                                queryBuilder: (supportersRecord) =>
+                                    supportersRecord.where('missionary',
+                                        isEqualTo: widget.profileId),
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<SupportersRecord>
+                                    listViewSupportersRecordList =
+                                    snapshot.data!;
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount:
+                                      listViewSupportersRecordList.length,
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewSupportersRecord =
+                                        listViewSupportersRecordList[
+                                            listViewIndex];
+                                    return StreamBuilder<UsersRecord>(
+                                      stream: UsersRecord.getDocument(
+                                          listViewSupportersRecord
+                                              .supporterRef!),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final circleImageUsersRecord =
+                                            snapshot.data!;
+                                        return Container(
+                                          width: 30.0,
+                                          height: 30.0,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Image.network(
+                                            circleImageUsersRecord.photoUrl,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: StreamBuilder<List<PostsRecord>>(
+                            stream: queryPostsRecord(
+                              queryBuilder: (postsRecord) => postsRecord
+                                  .where('public', isEqualTo: true)
+                                  .where('post_user',
+                                      isEqualTo: widget.profileId)
+                                  .orderBy('time_posted', descending: true),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<PostsRecord> listViewPostsRecordList =
+                                  snapshot.data!;
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: listViewPostsRecordList.length,
+                                itemBuilder: (context, listViewIndex) {
+                                  final listViewPostsRecord =
+                                      listViewPostsRecordList[listViewIndex];
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        flex: 2,
+                                        child: Text(
+                                          listViewPostsRecord.postMessage
+                                              .maybeHandleOverflow(
+                                                  maxChars: 240),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/120/600',
+                                            width: 300.0,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
                             },
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                        Spacer(),
+                        wrapWithModel(
+                          model: _model.navBarWithMiddleButtonModel,
+                          updateCallback: () => setState(() {}),
+                          child: NavBarWithMiddleButtonWidget(),
+                        ),
+                      ],
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 1.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: ListView(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      children: [],
-                    ),
-                  ),
-                  Spacer(),
-                  wrapWithModel(
-                    model: _model.navBarWithMiddleButtonModel,
-                    updateCallback: () => setState(() {}),
-                    child: NavBarWithMiddleButtonWidget(),
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),
