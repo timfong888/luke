@@ -516,12 +516,18 @@ class _FeedWidgetState extends State<FeedWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  if (listViewPostsRecord
-                                                              .postVideoUrl !=
-                                                          null &&
-                                                      listViewPostsRecord
-                                                              .postVideoUrl !=
-                                                          '')
+                                                  if ((listViewPostsRecord
+                                                                  .postPhoto ==
+                                                              null ||
+                                                          listViewPostsRecord
+                                                                  .postPhoto ==
+                                                              '') &&
+                                                      (listViewPostsRecord
+                                                                  .postVideoUrl !=
+                                                              null &&
+                                                          listViewPostsRecord
+                                                                  .postVideoUrl !=
+                                                              ''))
                                                     FlutterFlowVideoPlayer(
                                                       path: listViewPostsRecord
                                                           .postVideoUrl,
@@ -532,9 +538,10 @@ class _FeedWidgetState extends State<FeedWidget> {
                                                                   .size
                                                                   .width *
                                                               0.8,
+                                                      aspectRatio: 0.80,
                                                       autoPlay: false,
                                                       looping: false,
-                                                      showControls: true,
+                                                      showControls: false,
                                                       allowFullScreen: true,
                                                       allowPlaybackSpeedMenu:
                                                           false,
