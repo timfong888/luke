@@ -34,11 +34,17 @@ class RepliesRecord extends FirestoreRecord {
   DateTime? get replyDate => _replyDate;
   bool hasReplyDate() => _replyDate != null;
 
+  // "replyGift" field.
+  String? _replyGift;
+  String get replyGift => _replyGift ?? '';
+  bool hasReplyGift() => _replyGift != null;
+
   void _initializeFields() {
     _postID = snapshotData['postID'] as DocumentReference?;
     _replyUser = snapshotData['replyUser'] as DocumentReference?;
     _replyMessage = snapshotData['replyMessage'] as String?;
     _replyDate = snapshotData['replyDate'] as DateTime?;
+    _replyGift = snapshotData['replyGift'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -72,6 +78,7 @@ Map<String, dynamic> createRepliesRecordData({
   DocumentReference? replyUser,
   String? replyMessage,
   DateTime? replyDate,
+  String? replyGift,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -79,6 +86,7 @@ Map<String, dynamic> createRepliesRecordData({
       'replyUser': replyUser,
       'replyMessage': replyMessage,
       'replyDate': replyDate,
+      'replyGift': replyGift,
     }.withoutNulls,
   );
 

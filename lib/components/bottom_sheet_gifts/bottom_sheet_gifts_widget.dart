@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,10 +15,12 @@ class BottomSheetGiftsWidget extends StatefulWidget {
     Key? key,
     required this.posterUser,
     required this.giverUser,
+    this.postRef,
   }) : super(key: key);
 
   final DocumentReference? posterUser;
   final DocumentReference? giverUser;
+  final DocumentReference? postRef;
 
   @override
   _BottomSheetGiftsWidgetState createState() => _BottomSheetGiftsWidgetState();
@@ -78,6 +82,16 @@ class _BottomSheetGiftsWidgetState extends State<BottomSheetGiftsWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
+                      final repliesCreateData = createRepliesRecordData(
+                        postID: widget.postRef,
+                        replyUser: widget.giverUser,
+                        replyDate: dateTimeFromSecondsSinceEpoch(
+                            getCurrentTimestamp.secondsSinceEpoch),
+                        replyGift: 'flare',
+                      );
+                      await RepliesRecord.collection
+                          .doc()
+                          .set(repliesCreateData);
                       Navigator.pop(context);
                     },
                   ),

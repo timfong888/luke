@@ -372,9 +372,12 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                                               ),
                                             ),
                                           ),
-                                        if (widget.postID!.postVideoUrl !=
-                                                null &&
-                                            widget.postID!.postVideoUrl != '')
+                                        if ((widget.postID!.postVideoUrl !=
+                                                    null &&
+                                                widget.postID!.postVideoUrl !=
+                                                    '') &&
+                                            (widget.postID!.postPhoto == null ||
+                                                widget.postID!.postPhoto == ''))
                                           FlutterFlowVideoPlayer(
                                             path: widget.postID!.postVideoUrl,
                                             videoType: VideoType.network,
@@ -411,6 +414,21 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                                           onChanged: (newValue) async {
                                             setState(() =>
                                                 _model.switchValue = newValue!);
+                                            if (newValue!) {
+                                              final postsUpdateData =
+                                                  createPostsRecordData(
+                                                public: true,
+                                              );
+                                              await widget.postID!.reference
+                                                  .update(postsUpdateData);
+                                            } else {
+                                              final postsUpdateData =
+                                                  createPostsRecordData(
+                                                public: false,
+                                              );
+                                              await widget.postID!.reference
+                                                  .update(postsUpdateData);
+                                            }
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -666,18 +684,50 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                                                                             context)
                                                                         .primaryBackground,
                                                                   ),
-                                                                  child: Text(
-                                                                    columnRepliesRecord
-                                                                        .replyMessage,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'DM Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        columnRepliesRecord
+                                                                            .replyMessage,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'DM Sans',
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                      ),
+                                                                      if (columnRepliesRecord.replyGift !=
+                                                                              null &&
+                                                                          columnRepliesRecord.replyGift !=
+                                                                              '')
+                                                                        FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          borderRadius:
+                                                                              15.0,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                          buttonSize:
+                                                                              30.0,
+                                                                          fillColor:
+                                                                              FlutterFlowTheme.of(context).secondary,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.flare,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                15.0,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            print('IconButton pressed ...');
+                                                                          },
                                                                         ),
+                                                                    ],
                                                                   ),
                                                                 ),
                                                               ],
@@ -822,7 +872,7 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                             elevation: 0.0,
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.9,
-                              height: 125.0,
+                              height: 150.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -830,7 +880,7 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                               alignment: AlignmentDirectional(
                                   0.0, 0.050000000000000044),
                               child: Column(
-                                mainAxisSize: MainAxisSize.min,
+                                mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Flexible(
@@ -1064,6 +1114,8 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                                                       giverUser:
                                                           containerUsersRecord
                                                               .reference,
+                                                      postRef: widget
+                                                          .postID!.reference,
                                                     ),
                                                   ),
                                                 ),

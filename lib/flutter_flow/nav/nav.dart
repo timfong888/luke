@@ -112,6 +112,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'displayPost',
               path: 'displayPost/:postID',
+              requireAuth: true,
               asyncParams: {
                 'postID': getDoc(['posts'], PostsRecord.fromSnapshot),
               },
