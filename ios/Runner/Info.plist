@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Acts2</string>
+	<string>Luke10</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -40,7 +40,7 @@
         <string>acts2.xyz</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>acts2</string>
+        <string>luke10</string>
         </array>
         </dict>
     </array>

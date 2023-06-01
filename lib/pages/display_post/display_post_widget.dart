@@ -863,6 +863,7 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                       ),
                     ),
                     Flexible(
+                      flex: 1,
                       child: Align(
                         alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
@@ -873,6 +874,7 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                             elevation: 0.0,
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.9,
+                              height: MediaQuery.of(context).size.height * 1.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
