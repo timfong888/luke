@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/random_data_util.dart' as random_data;
@@ -1121,6 +1122,18 @@ class _DisplayPostWidgetState extends State<DisplayPostWidget> {
                                               );
                                             },
                                           ).then((value) => setState(() {}));
+
+                                          _model.instantTimer =
+                                              InstantTimer.periodic(
+                                            duration:
+                                                Duration(milliseconds: 1000),
+                                            callback: (timer) async {
+                                              setState(() => _model
+                                                      .firestoreRequestCompleter =
+                                                  null);
+                                            },
+                                            startImmediately: true,
+                                          );
                                         },
                                       ),
                                       FFButtonWidget(

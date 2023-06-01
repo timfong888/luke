@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/random_data_util.dart' as random_data;
@@ -40,9 +41,10 @@ class DisplayPostModel extends FlutterFlowModel {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  InstantTimer? instantTimer;
+  Completer<List<RepliesRecord>>? firestoreRequestCompleter;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   RepliesRecord? newPostOutput;
-  Completer<List<RepliesRecord>>? firestoreRequestCompleter;
 
   /// Initialization and disposal methods.
 
@@ -53,6 +55,7 @@ class DisplayPostModel extends FlutterFlowModel {
   void dispose() {
     columnController?.dispose();
     textController?.dispose();
+    instantTimer?.cancel();
   }
 
   /// Additional helper methods are added here.
